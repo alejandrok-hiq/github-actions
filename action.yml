@@ -1,11 +1,27 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Auto reviews'
+description: 'Review automatic `pull request` from selected branches or author.'
+branding:
+  icon: 'user-check'
+  color: 'red'
 inputs:
-  milliseconds: # change this
+  GITHUB_TOKEN:
+    description: 'Personal github token'
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
-runs:
+  EVENT_TYPE:
+    description: 'Type of event has been APPROVE, COMMENT and REQUEST_CHANGES.'
+    required: false
+    default: 'APPROVE'
+  BRANCHES:
+    description: 'Branches are you want to use this event.'
+    required: false
+    default: 'release/*'
+  AUTHOR:
+    description: 'AUTHOR are you want to automatic approve.'
+    required: false
+    default: 'dependabot-preview[bot], dependabot[bot]'
+  MESSAGE:
+    description: 'Message for approve.'
+    required: false
+    default: 'Success approve. Enjoy 🏳️‍🌈🎉.'
   using: 'node12'
-  main: 'dist/index.js'
+  main: 'dist/code-review.js'
